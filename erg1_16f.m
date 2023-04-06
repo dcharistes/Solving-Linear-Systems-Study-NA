@@ -1,51 +1,54 @@
-
 function erg1_16f
-n=10;
-for N=800
+clc;
 
-ee = randi([1,n+1],1,N-2);
-cc = randi([1,n+1],1,N-1);
-dd = randi([1,n+1],1,N);
-aa = randi([1,n+1],1,N-1);
-bb = randi([1,n+1],1,N-2);
+for n=4:35
+
+%for i=1:1:10
+ee = round(10*rand(1,n-2))+1;
+cc = round(10*rand(1,n-1))+1;
+dd = round(10*rand(1,n))+1;
+aa = round(10*rand(1,n-1))+1;
+bb = round(10*rand(1,n-2))+1;
+
 p=pentadiagonal(ee,cc,dd,aa,bb);
-y= randi([1,10*n+1],1,N);
 
-b = randn(N,1);
+y = round(100*rand(n,1)) + 1;
 
-tic;xM=(p\b)'; tM=toc;
-tic;xP=PTRANSII(N,ee,cc,dd,aa,bb,y); tP=toc;
-tic;xC=cramer(p,b); tC=toc;
-tic;xG= gaussianElimination(p,b); tG=toc;
+b = randn(n,1);
+A=p;
+
+tic;xM=(A\b)'; tM=toc;
+tic;xP=PTRANSII(n,ee,cc,dd,aa,bb,y); tP=toc;
+tic;xC=cramer(A,b); tC=toc;
+tic;xG= gaussianElimination(A,b); tG=toc;
 disp(xP);
 eM=norm(xP-xM);
 eC=norm(xP-xC);
 eG=norm(xP-xG); 
-
+%end
 fprintf("TIME WITH MATLAB IS:  %12.10f  AND THE DIFFERENCE BETWEEN PTRANSII AND MATLAB IS:  %20.18f\n",tM,eM);
 fprintf("TIME WITH CRAMER IS:  %12.10f  AND THE DIFFERENCE BETWEEN PTRANSII AND CRAMER IS:  %20.18f\n",tC,eC);
 fprintf("TIME WITH PTRANSII IS:  %12.10f\n",tP);
 fprintf("TIME WITH GAUSSIAN ELIMINATION IS %12.10f AND THE DIFFERENCE BETWEEN PTRANSII AND GAUSSIAN ELIMINATION IS:  %20.18f\n",tG,eG);
 
-disp("N=");
-disp(N);
+
 end
 end
 
 function p = pentadiagonal(ee,cc,dd,aa,bb)
-clc;
-p = diag(ee,-2)+diag(cc,-1)+diag(dd,0)+diag(aa,1)+diag(bb,2);
+%clc;
+p = diag(ee,-2)+diag(cc,-1)+diag(dd,0)+diag(aa,1)+diag(bb,2)
 
 end
-function [x,psi] = PTRANSII(n,ee,cc,dd,aa,bb,~)
-clc;
-size=10;
+function [x,psi] = PTRANSII(n,ee,cc,dd,aa,bb,y)
+%clc;
+
 e = [0 0 ee];
 c = [0 cc];
 d = dd;
 a = [aa 0];
 b = [bb 0 0];
-y= randi([1,10*size+1],1,n);
+
 
 psi(n)=d(n);
 s(n)=(c(n)/psi(n));
