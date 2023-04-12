@@ -62,7 +62,7 @@ plot(Np,avg_tG,'g');hold on;grid on;
 plot(Np,avg_tC,'c');
 plot(Np,avg_tM,'r');
 plot(Np,avg_tP,'b');
-axis([0 n1 0 avg_tG(k)+10^-4]);
+axis([0,n1,0,avg_tG(k)+10^-4]);
 
 title('Execution Time Comparison of algorithms for solving linear pentadiagonal systems');
 xlabel('Dimension');
@@ -114,7 +114,7 @@ end
 subplot(2,1,2);
 plot(Np, avg2_tM, 'r'); hold on; grid on;
 plot(Np,avg2_tP, 'b');
-axis([0 n2 0 avg2_tM(q)+0.001]);
+axis([0,n2,0,avg2_tM(q)+0.01]);
 
 title('Execution Time Comparison of PTRANSII and Matlab for solving linear pentadiagonal systems');
 xlabel('Dimension');
@@ -183,7 +183,7 @@ function x = cramer(A,b)
 	x = zeros(size(b));
 	for j = 1:size(b)
 		x(j) = det([A(:,1:j-1) b A(:,j+1:end)]) / d;
-end
+    end
 end
 
 function x = gaussianElimination(A, b)
