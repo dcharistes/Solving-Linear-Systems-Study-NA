@@ -64,7 +64,7 @@ plot(Np,avg_tM,'r');
 plot(Np,avg_tP,'b');
 axis([0 n1 0 avg_tG(k)+10^-4]);
 
-title('Execution Time Comparison of algorithms for solving linear pentadiagonal systems', 'Position',[17.5,0.0025,0]);
+title('Execution Time Comparison of algorithms for solving linear pentadiagonal systems');
 xlabel('Dimension');
 ylabel('Execution Time');
 legend('GAUSS', 'CRAMER', 'MATLAB', 'PTRANSII','Location','northwest');
@@ -114,7 +114,7 @@ end
 subplot(2,1,2);
 plot(Np, avg2_tM, 'r'); hold on; grid on;
 plot(Np,avg2_tP, 'b');
-axis([0 n2 0 avg2_tM(q)+0.01]);
+axis([0 n2 0 avg2_tM(q)+0.001]);
 
 title('Execution Time Comparison of PTRANSII and Matlab for solving linear pentadiagonal systems');
 xlabel('Dimension');
