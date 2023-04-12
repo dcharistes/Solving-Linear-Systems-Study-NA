@@ -50,21 +50,21 @@ avg_tC(k)=sum_tC(k)/l;
 avg_tG(k)=sum_tG(k)/l;
 
 fprintf("\nDIMENSION %d\n",n);
-fprintf("THE AVERAGE RESOLUTION TIME OF THE 5-DIAG SYSTEM WITH CRAMER IS:  %12.10f\n", avg_tC(k));
 fprintf("THE AVERAGE RESOLUTION TIME OF THE 5-DIAG SYSTEM WITH GAUSSIAN ELIMINATION IS:  %12.10f\n", avg_tG(k));
+fprintf("THE AVERAGE RESOLUTION TIME OF THE 5-DIAG SYSTEM WITH CRAMER IS:  %12.10f\n", avg_tC(k));
 fprintf("THE AVERAGE RESOLUTION TIME OF THE 5-DIAG SYSTEM WITH MATLAB IS:  %12.10f\n", avg_tM(k));
 fprintf("THE AVERAGE RESOLUTION TIME OF THE 5-DIAG SYSTEM WITH PTRANSII IS:  %12.10f\n", avg_tP(k));
 
 end
 
 subplot(2,1,1);
-plot(Np,avg_tG,'b');hold on; grid on;
-plot(Np,avg_tC,'k');hold on;
-plot(Np,avg_tM,'g');hold on;
-plot(Np,avg_tP,'r');hold on;
-axis([0 n1 0 0.0018]);
+plot(Np,avg_tG,'g');hold on; grid on;
+plot(Np,avg_tC,'c');
+plot(Np,avg_tM,'r');
+plot(Np,avg_tP,'b');
+axis([0 n1 0 avg_tG(k)+10^-4]);
 
-title('Execution Time Comparison of algorithms for solving linear pentadiagonal systems');
+title('Execution Time Comparison of algorithms for solving linear pentadiagonal systems', 'Position',[17.5,0.0025,0]);
 xlabel('Dimension');
 ylabel('Execution Time');
 legend('GAUSS', 'CRAMER', 'MATLAB', 'PTRANSII','Location','northwest');
@@ -112,9 +112,9 @@ fprintf("THE AVERAGE RESOLUTION TIME OF THE 5-DIAG SYSTEM WITH PTRANSII IS:  %12
 end
 
 subplot(2,1,2);
-plot(Np, avg2_tM, 'g'); hold on; grid on;
-plot(Np,avg2_tP, 'r');
-axis([0 n2 0 0.08]);
+plot(Np, avg2_tM, 'r'); hold on; grid on;
+plot(Np,avg2_tP, 'b');
+axis([0 n2 0 avg2_tM(q)+0.01]);
 
 title('Execution Time Comparison of PTRANSII and Matlab for solving linear pentadiagonal systems');
 xlabel('Dimension');
