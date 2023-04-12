@@ -58,7 +58,7 @@ fprintf("THE AVERAGE RESOLUTION TIME OF THE 5-DIAG SYSTEM WITH PTRANSII IS:  %12
 end
 
 subplot(2,1,1);
-plot(Np,avg_tG,'g');hold on; grid on;
+plot(Np,avg_tG,'g');hold on;grid on;
 plot(Np,avg_tC,'c');
 plot(Np,avg_tM,'r');
 plot(Np,avg_tP,'b');
