@@ -1,4 +1,4 @@
-function erg1_16_rand_final
+function erg1_16_rand_final2
 clc;
 n1=35;
 n2=2000;
