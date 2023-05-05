@@ -26,13 +26,13 @@ for n=4:35
 for i=1:10
 
 
-ee = round(10*rand(1,n-2))+1;
-cc = round(10*rand(1,n-1))+1;
-dd = round(10*rand(1,n))+1;
-aa = round(10*rand(1,n-1))+1;
-bb = round(10*rand(1,n-2))+1;
+E = round(10*rand(1,n-2))+1;
+C = round(10*rand(1,n-1))+1;
+D = round(10*rand(1,n))+1;
+A = round(10*rand(1,n-1))+1;
+B = round(10*rand(1,n-2))+1;
 
-p=pentadiagonal(ee,cc,dd,aa,bb);
+p=pentadiagonal(E,C,D,A,B);
 
 y = round(100*rand(1,n)) + 1;
 
@@ -41,7 +41,7 @@ b = y';
 tic;xM=(p\b)'; tM=toc;
 sumM(m)= sumM(m)+tM;
 
-tic;xP=PTRANSII(n,ee,cc,dd,aa,bb,y); tP=toc;
+tic;xP=PTRANSII(n,E,C,D,A,B,y); tP=toc;
 sumP(m)= sumP(m)+tP;
 
 tic;xG= gaussianElimination(p,b)'; tG=toc;
@@ -81,13 +81,12 @@ for n=4:50:2000
     m=((n-4)/50)+1;
 for i=1:10
 
-ee = round(10*rand(1,n-2))+1;
-cc = round(10*rand(1,n-1))+1;
-dd = round(10*rand(1,n))+1;
-aa = round(10*rand(1,n-1))+1;
-bb = round(10*rand(1,n-2))+1;
-
-p=pentadiagonal(ee,cc,dd,aa,bb);
+E = round(10*rand(1,n-2))+1;
+C = round(10*rand(1,n-1))+1;
+D = round(10*rand(1,n))+1;
+A = round(10*rand(1,n-1))+1;
+B = round(10*rand(1,n-2))+1;
+p=pentadiagonal(E,C,D,A,B);
 
 y = round(100*rand(1,n)) + 1;
 
@@ -96,7 +95,7 @@ b=y';
 tic;xM=(p\b)'; tM=toc;
 sumM(m)= sumM(m)+tM;
 
-tic;xP=PTRANSII(n,ee,cc,dd,aa,bb,y); tP=toc;
+tic;xP=PTRANSII(n,E,C,D,A,B,y); tP=toc;
 sumP(m)= sumP(m)+tP;
 
 end
@@ -112,23 +111,24 @@ axis([0,2000,0,0.08]);
 hold off;
 
 end
-function p = pentadiagonal(ee,cc,dd,aa,bb)
-p = diag(ee,-2)+diag(cc,-1)+diag(dd,0)+diag(aa,1)+diag(bb,2);
+function p = pentadiagonal(E,C,D,A,B)
+p = diag(E,-2)+diag(C,-1)+diag(D,0)+diag(A,1)+diag(B,2);
 end
 
-function [x,psi] = PTRANSII(n,ee,cc,dd,aa,bb,y)
+function [x,psi] = PTRANSII(n,E,C,D,A,B,y)
 
-a(n) = 0;
-b(n) = 0;
-b(n-1) = 0;
-c(1) = 0;
-e(1) = 0;
-e(2) = 0;
+A(n) = 0;
+B(n) = 0;
+B(n-1) = 0;
+C(1) = 0;
+E(1) = 0;
+E(2) = 0;
 
-e = [e(1) e(2) e];
-c = [c(1) c];
-a = [a a(n)];
-b = [b b(n-1) b(n)];
+e = [E(1) E(2) E];
+c = [C(1) C];
+d = D;
+a = [A A(n)];
+b = [B B(n-1) B(n)];
 
 
 psi(n)=d(n);
