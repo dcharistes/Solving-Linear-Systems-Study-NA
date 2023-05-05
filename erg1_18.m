@@ -123,9 +123,9 @@ legend('MATLAB', 'PTRANSII','Location','northwest');
 hold off;
 
 end
-function p = pentadiagonal(ee,cc,dd,aa,bb)
+function p = pentadiagonal(e,c,d,a,b)
 %clc;
-p = diag(ee,-2)+diag(cc,-1)+diag(dd,0)+diag(aa,1)+diag(bb,2);
+p = diag(e,-2)+diag(c,-1)+diag(d,0)+diag(a,1)+diag(b,2);
 
 end
 
