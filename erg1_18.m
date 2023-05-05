@@ -5,9 +5,9 @@ n2=2000;
 
 fprintf("\nIMPLEMENTATION OF THE FIRST STUDY EXPERIMENT TO SOLVE RANDOM PENTADIAGONAL LINEAR SYSTEMS...\n");
 t_start1=tic;
+
 Np=4:n1;
 [~,cols]=size(Np);
-
 sum_tM=zeros(1,cols); avg_tM=zeros(1,cols);
 sum_tG=zeros(1,cols); avg_tG=zeros(1,cols);
 sum_tC=zeros(1,cols); avg_tC=zeros(1,cols);
@@ -16,7 +16,6 @@ sum_tP=zeros(1,cols); avg_tP=zeros(1,cols);
 for n=4:n1
    k=n-3;
 for l=1:10
-
 
 e = round(10*rand(1,n-2))+1;
 c = round(10*rand(1,n-1))+1;
