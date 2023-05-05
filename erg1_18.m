@@ -1,7 +1,7 @@
 function erg1_18
 clc;
 n1=35;
-n2=2000;
+n2=200;
 
 fprintf("\nIMPLEMENTATION OF THE FIRST STUDY EXPERIMENT TO SOLVE RANDOM PENTADIAGONAL LINEAR SYSTEMS...\n");
 t_start1=tic;
@@ -58,10 +58,10 @@ avg_tG(k)=sum_tG(k)/l;
 end
 t1=toc(t_start1);
 subplot(2,1,1);
-plot(Np,avg_tG,'g');hold on; grid on;
-plot(Np,avg_tC,'c');
-plot(Np,avg_tM,'r');
-plot(Np,avg_tP,'b');
+plot(Np,avg_tG,'g.-');hold on; grid on;
+plot(Np,avg_tC,'c.-');
+plot(Np,avg_tM,'r.-');
+plot(Np,avg_tP,'b.-');
 axis([0,n1,0,avg_tG(k)+10^-4]);
 
 title('Execution Time Comparison of algorithms for solving linear pentadiagonal systems');
@@ -116,8 +116,8 @@ avg2_tP(q)=sum2_tP(q)/l;
 end
 t2=toc(t_start2);
 subplot(2,1,2);
-plot(Np, avg2_tM, 'r'); hold on; grid on;
-plot(Np,avg2_tP, 'b');
+plot(Np, avg2_tM, 'r.-'); hold on; grid on;
+plot(Np,avg2_tP, 'b.-');
 axis([0,n2,0,avg2_tM(q)+0.01]);
 
 title('Execution Time Comparison of PTRANSII and Matlab for solving linear pentadiagonal systems');
