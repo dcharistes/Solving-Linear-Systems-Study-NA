@@ -23,7 +23,7 @@ end
 
 for n = 4:35
 m = n-3;
-for i=1:10
+for i = 1:10
 
 
 E = round(10*rand(1,n-2))+1;
