@@ -3,7 +3,7 @@ clc;
 n1=35;
 n2=2000;
 
-fprintf("\n IMPLEMENTATION OF THE FIRST STUDY EXPERIMENT TO SOLVE RANDOM PENTADIAGONAL LINEAR SYSTEMS \n");
+fprintf("\n IMPLEMENTATION OF THE FIRST STUDY EXPERIMENT TO SOLVE RANDOM PENTADIAGONAL LINEAR SYSTEMS...\n");
 
 Np=4:n1;
 [~,cols]=size(Np);
@@ -49,11 +49,11 @@ avg_tP(k)=sum_tP(k)/l;
 avg_tC(k)=sum_tC(k)/l;
 avg_tG(k)=sum_tG(k)/l;
 
-fprintf("\nDIMENSION %d\n",n);
-fprintf("THE AVERAGE RESOLUTION TIME OF THE 5-DIAG SYSTEM WITH GAUSSIAN ELIMINATION IS:  %12.10f\n", avg_tG(k));
-fprintf("THE AVERAGE RESOLUTION TIME OF THE 5-DIAG SYSTEM WITH CRAMER IS:  %12.10f\n", avg_tC(k));
-fprintf("THE AVERAGE RESOLUTION TIME OF THE 5-DIAG SYSTEM WITH MATLAB IS:  %12.10f\n", avg_tM(k));
-fprintf("THE AVERAGE RESOLUTION TIME OF THE 5-DIAG SYSTEM WITH PTRANSII IS:  %12.10f\n", avg_tP(k));
+% fprintf("\nDIMENSION %d\n",n); //If uncommented, the average execution time is printed for every dimension 
+% fprintf("THE AVERAGE RESOLUTION TIME OF THE 5-DIAG SYSTEM WITH GAUSSIAN ELIMINATION IS:  %12.10f\n", avg_tG(k));
+% fprintf("THE AVERAGE RESOLUTION TIME OF THE 5-DIAG SYSTEM WITH CRAMER IS:  %12.10f\n", avg_tC(k));
+% fprintf("THE AVERAGE RESOLUTION TIME OF THE 5-DIAG SYSTEM WITH MATLAB IS:  %12.10f\n", avg_tM(k));
+% fprintf("THE AVERAGE RESOLUTION TIME OF THE 5-DIAG SYSTEM WITH PTRANSII IS:  %12.10f\n", avg_tP(k));
 
 end
 
@@ -69,8 +69,9 @@ xlabel('Dimension');
 ylabel('Execution Time');
 legend('GAUSS', 'CRAMER', 'MATLAB', 'PTRANSII','Location','northwest');
 hold off;
-
-fprintf("\n IMPLEMENTATION OF THE SECOND STUDY EXPERIMENT TO SOLVE RANDOM PENTADIAGONAL LINEAR SYSTEMS \n");
+fprintf("\nTHE IMPLEMENTATION OF THE FIRST STUDY EXPERIMENT IS FINISHED.\n");
+pause(2);
+fprintf("\n IMPLEMENTATION OF THE SECOND STUDY EXPERIMENT TO SOLVE RANDOM PENTADIAGONAL LINEAR SYSTEMS...\n");
 
 Np=4:50:n2;
 [~,cols]=size(Np);
@@ -98,16 +99,16 @@ sum2_tM(q)= sum2_tM(q)+tM;
 
 tic;xP=PTRANSII(n,e,c,d,a,b,y); tP=toc;
 sum2_tP(q)= sum2_tP(q)+tP;
-
 %xN=norm(xM-xP); disp("xN= "+xN);
+
 end
 
 avg2_tM(q)=sum2_tM(q)/l;
 avg2_tP(q)=sum2_tP(q)/l;
 
-fprintf("\nDIMENSION: %d\n",n);
-fprintf("THE AVERAGE RESOLUTION TIME OF THE 5-DIAG SYSTEM WITH MATLAB IS:  %12.10f\n", avg2_tM(q));
-fprintf("THE AVERAGE RESOLUTION TIME OF THE 5-DIAG SYSTEM WITH PTRANSII IS:  %12.10f\n", avg2_tP(q));
+% fprintf("\nDIMENSION: %d\n",n); //If uncommented, the average execution time is printed for every dimension 
+% fprintf("THE AVERAGE RESOLUTION TIME OF THE 5-DIAG SYSTEM WITH MATLAB IS:  %12.10f\n", avg2_tM(q));
+% fprintf("THE AVERAGE RESOLUTION TIME OF THE 5-DIAG SYSTEM WITH PTRANSII IS:  %12.10f\n", avg2_tP(q));
 
 
 end
@@ -122,7 +123,7 @@ xlabel('Dimension');
 ylabel('Execution Time');
 legend('MATLAB', 'PTRANSII','Location','northwest');
 hold off;
-
+fprintf("\nTHE IMPLEMENTATION OF THE SECOND STUDY EXPERIMENT IS FINISHED.\n");
 end
 function p = pentadiagonal(e,c,d,a,b)
 %clc;
@@ -166,18 +167,14 @@ w(1)=(y(1) -(w(3)*b(1))- (w(2)*r(1)))/psi(1);
 x(1) = w(1);
 x(2) = w(2) -(s(2)*x(1));
 
-%disp("psi:"); //if uncommented, the psi is printed for every dimension
-%(x10). The x10 is because of the for loop we implemented to get and save the average
-%solving time of the linear pentadiagonal system of every dimension.
+%disp("psi:"); //if uncommented, the psi is printed for every dimension(x10).
 %disp(psi);
 
 for i = 3:1:n
 x(i) = w(i) - (s(i)*x(i-1)) - (f(i)*x(i-2));
 end
 
-%disp("x:"); //if uncommented, the x is printed for every dimension
-%(x10). The x10 is because of the for loop we implemented to get and save the average
-%solving time of the linear pentadiagonal system of every dimension.
+%disp("x:"); //if uncommented, the x is printed for every dimension(x10). 
 %disp(x);
 
 end
