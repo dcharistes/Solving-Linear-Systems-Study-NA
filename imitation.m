@@ -1,4 +1,4 @@
-function erg1_18
+function imitation
 clc;
 n1=35;
 n2=2000;
