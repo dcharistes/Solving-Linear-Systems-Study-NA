@@ -1,4 +1,4 @@
-function erg1_16_randi()
+function erg1_16_randi
 clc;
 np=35;
 Np=4:np;
