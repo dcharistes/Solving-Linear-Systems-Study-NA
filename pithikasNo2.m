@@ -1,4 +1,4 @@
-function erg1_last_minute_15
+function pithikasNo2
 clc;
 
 N=4:35;
