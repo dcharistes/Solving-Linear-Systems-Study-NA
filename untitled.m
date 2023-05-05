@@ -60,13 +60,8 @@ avgG(m)=sumG(m)/i;
 end
 
 subplot(2,1,1);
-plot(N,avgG,'g');hold on; grid on;
-plot(N,avgC,'c');
-plot(N,avgM,'r');
-plot(N,avgP,'b');
-axis([0,35,0,avgG(m)+10^-4]);
-
-
+plot(N,avgG,'g',N,avgC,'C',N,avgM,'r',N,avgP,'b');hold on; grid on;
+axis([0,35,0,2*(10^-3)]);
 hold off;
 
 
@@ -109,32 +104,32 @@ end
 avgM(m)=sumM(m)/i;
 avgP(m)=sumP(m)/i;
 
-
-
-
 end
 
 subplot(2,1,2);
-plot(N, avgM, 'r'); hold on; grid on;
-plot(N,avgP, 'b');
-axis([0,2000,0,avgM(m)+0.01]);
-legend('MATLAB', 'PTRANSII','Location','northwest');
+plot(N, avgM, 'r',N,avgP, 'b'); hold on; grid on;
+axis([0,2000,0,0.08]);
 hold off;
 
 end
 function p = pentadiagonal(ee,cc,dd,aa,bb)
-%clc;
 p = diag(ee,-2)+diag(cc,-1)+diag(dd,0)+diag(aa,1)+diag(bb,2);
-
 end
 
 function [x,psi] = PTRANSII(n,ee,cc,dd,aa,bb,y)
-%clc;
-e = [0 0 ee];
-c = [0 cc];
-d = dd;
-a = [aa 0];
-b = [bb 0 0];
+
+a(n) = 0;
+b(n) = 0;
+b(n-1) = 0;
+c(1) = 0;
+e(1) = 0;
+e(2) = 0;
+
+e = [e(1) e(2) e];
+c = [c(1) c];
+a = [a a(n)];
+b = [b b(n-1) b(n)];
+
 
 psi(n)=d(n);
 s(n)=c(n)/psi(n);
