@@ -1,8 +1,8 @@
-function untitled
+function untitled(E,C,D,A,B)
 clc;
 
 N=4:35;
-sumM = []; 
+sumM = [];
 sumG = [];
 sumC = [];
 sumP = [];
@@ -10,21 +10,22 @@ avgM = [];
 avgG = [];
 avgC = [];
 avgP = [];
-for i = 1:size(N, 2) 
-    sumM(i) = 0; 
-    sumG(i) = 0; 
-    sumC(i) = 0; 
-    sumP(i) = 0; 
+for i = 1:size(N, 2)
+    sumM(i) = 0;
+    sumG(i) = 0;
+    sumC(i) = 0;
+    sumP(i) = 0;
     avgM(i) = 0;
     avgG(i) = 0;
     avgC(i) = 0;
     avgP(i) = 0;
 end
 
+
+
 for n = 4:35
 m = n-3;
 for i=1:10
-
 
 E = round(10*rand(1,n-2))+1;
 C = round(10*rand(1,n-1))+1;
@@ -32,21 +33,27 @@ D = round(10*rand(1,n))+1;
 A = round(10*rand(1,n-1))+1;
 B = round(10*rand(1,n-2))+1;
 
-p=pentadiagonal(E,C,D,A,B);
+ee = [0 0 E];
+cc = [0 C];
+dd = D;
+aa = [A 0];
+bb = [B 0 0];
 y = round(100*rand(1,n)) + 1;
+p=pentadiagonal(E,C,D,A,B);
+
+
+tic;xP=PTRANSII(n,ee,cc,dd,aa,bb,y); tP=toc;
 b = y';
-
 tic;xM=(p\b)'; tM=toc;
-sumM(m)= sumM(m)+tM;
-
 tic;xG= gaussianElimination(p,b)'; tG=toc;
-sumG(m)= sumG(m)+tG;
-
-tic;xP=PTRANSII(n,E,C,D,A,B,y); tP=toc;
-sumP(m)= sumP(m)+tP;
-
 tic;xC=cramer(p,b)'; tC=toc;
+sumP(m)= sumP(m)+tP;
+sumG(m)= sumG(m)+tG;
+sumM(m)= sumM(m)+tM;
 sumC(m) = sumC(m)+tC;
+
+ep= norm(xM-xP);
+fprintf("error %20.18f\n",ep)
 
 end
 
@@ -59,23 +66,23 @@ avgP(m)=sumP(m)/i;
 end
 
 subplot(2,1,1);
-plot(N,avgG,'g--',N,avgC,'Co-',N,avgM,'r*-',N,avgP,'b^-');hold on; grid on;
+plot(N,avgG,'g',N,avgC,'C',N,avgM,'r',N,avgP,'b--');hold on; grid on;
 axis([0,35,0,2*(10^-3)]);
 hold off;
 
 
+
 N=4:50:2000;
-sumM = []; 
+sumM = [];
 sumP = [];
 avgM = [];
 avgP = [];
-for i = 1:size(N, 2) 
-    sumM(i) = 0; 
-    sumP(i) = 0; 
+for i = 1:size(N, 2)
+    sumM(i) = 0;
+    sumP(i) = 0;
     avgM(i) = 0;
     avgP(i) = 0;
 end
-
 n = 4;
 m = 1;
 while n <= 2000
@@ -88,15 +95,25 @@ C = round(10*rand(1,n-1))+1;
 D = round(10*rand(1,n))+1;
 A = round(10*rand(1,n-1))+1;
 B = round(10*rand(1,n-2))+1;
-p=pentadiagonal(E,C,D,A,B);
+
+ee = [0 0 E];
+cc = [0 C];
+dd = D;
+aa = [A 0];
+bb = [B 0 0];
 y = round(100*rand(1,n)) + 1;
+p=pentadiagonal(E,C,D,A,B);
+
+
+
+tic;xP=PTRANSII(n,ee,cc,dd,aa,bb,y); tP=toc;
 b=y';
-
-tic;xP=PTRANSII(n,E,C,D,A,B,y); tP=toc;
-sumP(m)= sumP(m)+tP;
-
 tic;xM=(p\b)'; tM=toc;
+sumP(m)= sumP(m)+tP;
 sumM(m)= sumM(m)+tM;
+ep= norm(xM-xP);
+fprintf("error %20.18f\n",ep)
+
 end
 
 avgM(m)=sumM(m)/i;
@@ -105,31 +122,30 @@ avgP(m)=sumP(m)/i;
 end
 
 subplot(2,1,2);
-plot(N, avgM, 'r*-',N,avgP, 'bo-'); hold on; grid on;
+plot(N, avgM, 'r',N,avgP, 'b'); hold on; grid on;
 axis([0,2000,0,0.08]);
 hold off;
 
 end
+
+
 function p = pentadiagonal(E,C,D,A,B)
 p = diag(E,-2)+diag(C,-1)+diag(D,0)+diag(A,1)+diag(B,2);
 end
 
-function [x,psi] = PTRANSII(n,E,C,D,A,B,y)
 
-A(n) = 0;
-B(n) = 0;
-B(n-1) = 0;
-C(1) = 0;
-E(1) = 0;
-E(2) = 0;
 
-e = [E(1) E(2) E];
-c = [C(1) C];
-d = D;
-a = [A A(n)];
-b = [B B(n-1) B(n)];
+function [x,psi] = PTRANSII(n,ee,cc,dd,aa,bb,y)
 
-psi(n) = d(n);
+
+ e = ee;
+ c = cc;
+ d=dd;
+ a = aa;
+ b = bb;
+
+
+    psi(n) = d(n);
     sigma(n) = c(n) / psi(n);
     fi(n) = e(n) / psi(n);
     w(n) = y(n) / psi(n);
@@ -163,12 +179,10 @@ psi(n) = d(n);
         x(i) = w(i) - (sigma(i) * x(i-1)) - fi(i) * x(i-2);
     end
 
-    disp('psi');
-    disp(psi);
+%     disp('psi');
+%     disp(psi);
 
 end
-
-
 
 function x = gaussianElimination(A, b)
 
@@ -194,8 +208,8 @@ end
     for k = n - 1:-1:1
         x(k) = (Ag(k, n + 1) - Ag(k, k + 1:n) * x(k + 1:n)) / Ag(k, k);
     end
-    
-    
+
+
 end
 
 function x = cramer(A,b)
@@ -206,4 +220,3 @@ function x = cramer(A,b)
   end
 
     end
-
