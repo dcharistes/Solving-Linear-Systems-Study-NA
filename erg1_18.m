@@ -62,7 +62,7 @@ plot(Np,avg_tG,'g.-');hold on; grid on;
 plot(Np,avg_tC,'c.-');
 plot(Np,avg_tM,'r.-');
 plot(Np,avg_tP,'b.-');
-axis([0,n1,0,avg_tG(k)+10^-4]);
+axis([0,n1+0.2,0,avg_tG(k)+10^-4]);
 
 title('Execution Time Comparison of algorithms for solving linear pentadiagonal systems');
 xlabel('Dimension');
