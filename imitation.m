@@ -3,12 +3,11 @@ clc;
 n1=35;
 n2=2000;
 
-fprintf("\n IMPLEMENTATION OF THE FIRST STUDY EXPERIMENT TO SOLVE RANDOM PENTADIAGONAL LINEAR SYSTEMS \n");
 
 Np=4:n1;
-cols = size(Np, 2);
+m= size(Np, 2);
 
-sum_tM = zeros(1, cols); avg_tM = sum_tM; sum_tG = sum_tM; avg_tG = sum_tM;
+sum_tM(m) = 0; avg_tM = sum_tM; sum_tG = sum_tM; avg_tG = sum_tM;
 sum_tC = sum_tM; avg_tC = sum_tM; sum_tP = sum_tM; avg_tP = sum_tM;
 
 
@@ -48,12 +47,6 @@ avg_tP(k)=sum_tP(k)/l;
 avg_tC(k)=sum_tC(k)/l;
 avg_tG(k)=sum_tG(k)/l;
 
-fprintf("\nDIMENSION %d\n",n);
-fprintf("THE AVERAGE RESOLUTION TIME OF THE 5-DIAG SYSTEM WITH GAUSSIAN ELIMINATION IS:  %12.10f\n", avg_tG(k));
-fprintf("THE AVERAGE RESOLUTION TIME OF THE 5-DIAG SYSTEM WITH CRAMER IS:  %12.10f\n", avg_tC(k));
-fprintf("THE AVERAGE RESOLUTION TIME OF THE 5-DIAG SYSTEM WITH MATLAB IS:  %12.10f\n", avg_tM(k));
-fprintf("THE AVERAGE RESOLUTION TIME OF THE 5-DIAG SYSTEM WITH PTRANSII IS:  %12.10f\n", avg_tP(k));
-
 end
 
 subplot(2,1,1);
@@ -69,7 +62,6 @@ ylabel('Execution Time');
 legend('GAUSS', 'CRAMER', 'MATLAB', 'PTRANSII','Location','northwest');
 hold off;
 
-fprintf("\n IMPLEMENTATION OF THE SECOND STUDY EXPERIMENT TO SOLVE RANDOM PENTADIAGONAL LINEAR SYSTEMS \n");
 
 Np=4:50:n2;
 [~,cols]=size(Np);
@@ -103,9 +95,6 @@ end
 avg2_tM(q)=sum2_tM(q)/l;
 avg2_tP(q)=sum2_tP(q)/l;
 
-fprintf("\nDIMENSION: %d\n",n);
-fprintf("THE AVERAGE RESOLUTION TIME OF THE 5-DIAG SYSTEM WITH MATLAB IS:  %12.10f\n", avg2_tM(q));
-fprintf("THE AVERAGE RESOLUTION TIME OF THE 5-DIAG SYSTEM WITH PTRANSII IS:  %12.10f\n", avg2_tP(q));
 
 
 end
