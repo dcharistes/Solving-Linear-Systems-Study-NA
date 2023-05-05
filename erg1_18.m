@@ -6,12 +6,11 @@ n2=2000;
 fprintf("\n IMPLEMENTATION OF THE FIRST STUDY EXPERIMENT TO SOLVE RANDOM PENTADIAGONAL LINEAR SYSTEMS \n");
 
 Np=4:n1;
-[~,cols]=size(Np);
+cols = size(Np, 2);
 
-sum_tM=zeros(1,cols); avg_tM=zeros(1,cols);
-sum_tG=zeros(1,cols); avg_tG=zeros(1,cols);
-sum_tC=zeros(1,cols); avg_tC=zeros(1,cols);
-sum_tP=zeros(1,cols); avg_tP=zeros(1,cols);
+sum_tM = zeros(1, cols); avg_tM = sum_tM; sum_tG = sum_tM; avg_tG = sum_tM;
+sum_tC = sum_tM; avg_tC = sum_tM; sum_tP = sum_tM; avg_tP = sum_tM;
+
 
 for n=4:n1
    k=n-3;
@@ -123,18 +122,26 @@ legend('MATLAB', 'PTRANSII','Location','northwest');
 hold off;
 
 end
-function p = pentadiagonal(ee,cc,dd,aa,bb)
+function p = pentadiagonal(e,c,d,a,b)
 %clc;
-p = diag(ee,-2)+diag(cc,-1)+diag(dd,0)+diag(aa,1)+diag(bb,2);
+p = diag(e,-2)+diag(c,-1)+diag(d,0)+diag(a,1)+diag(b,2);
 
 end
 
 function [x,psi] = PTRANSII(n,e,c,d,a,b,y)
 %clc;
-e = [0 0 e];
-c = [0 c];
-a = [a 0];
-b = [b 0 0];
+
+a(n) = 0;
+b(n) = 0;
+b(n-1) = 0;
+c(1) = 0;
+e(1) = 0;
+e(2) = 0;
+
+e = [e(1) e(2) e];
+c = [c(1) c];
+a = [a a(n)];
+b = [b b(n-1) b(n)];
 
 psi(n)=d(n);
 s(n)=c(n)/psi(n);
