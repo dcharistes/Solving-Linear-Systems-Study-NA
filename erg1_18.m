@@ -69,8 +69,8 @@ xlabel('Dimension');
 ylabel('Execution Time');
 legend('GAUSS', 'CRAMER', 'MATLAB', 'PTRANSII','Location','northwest');
 hold off;
-fprintf("\nTHE IMPLEMENTATION OF THE FIRST STUDY EXPERIMENT IS FINISHED.\n");
-pause(2);
+fprintf("\nTHE IMPLEMENTATION OF THE FIRST STUDY EXPERIMENT IS FINISHED AND THE RESULTS CAN BE SEEN IN THE FIGURE.\n");
+pause(1);
 fprintf("\nIMPLEMENTATION OF THE SECOND STUDY EXPERIMENT TO SOLVE RANDOM PENTADIAGONAL LINEAR SYSTEMS...\n");
 
 Np=4:50:n2;
@@ -123,10 +123,10 @@ xlabel('Dimension');
 ylabel('Execution Time');
 legend('MATLAB', 'PTRANSII','Location','northwest');
 hold off;
-fprintf("\nTHE IMPLEMENTATION OF THE SECOND STUDY EXPERIMENT IS FINISHED.\n");
+fprintf("\nTHE IMPLEMENTATION OF THE SECOND STUDY EXPERIMENT IS FINISHED AND THE RESULTS CAN BE SEEN IN THE SECOND FIGURE.\n");
 end
 function p = pentadiagonal(e,c,d,a,b)
-%clc;
+
 p = diag(e,-2)+diag(c,-1)+diag(d,0)+diag(a,1)+diag(b,2);
 
 end
