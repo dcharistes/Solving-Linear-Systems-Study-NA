@@ -4,7 +4,7 @@ n1=35;
 n2=2000;
 
 fprintf("\nIMPLEMENTATION OF THE FIRST STUDY EXPERIMENT TO SOLVE RANDOM PENTADIAGONAL LINEAR SYSTEMS...\n");
-
+t_start1=tic;
 Np=4:n1;
 [~,cols]=size(Np);
 
@@ -56,7 +56,7 @@ avg_tG(k)=sum_tG(k)/l;
 % fprintf("THE AVERAGE RESOLUTION TIME OF THE 5-DIAG SYSTEM WITH PTRANSII IS:  %12.10f\n", avg_tP(k));
 
 end
-
+t1=toc(t_start1);
 subplot(2,1,1);
 plot(Np,avg_tG,'g');hold on; grid on;
 plot(Np,avg_tC,'c');
@@ -70,6 +70,7 @@ ylabel('Execution Time');
 legend('GAUSS', 'CRAMER', 'MATLAB', 'PTRANSII','Location','northwest');
 hold off;
 fprintf("\nTHE IMPLEMENTATION OF THE FIRST STUDY EXPERIMENT IS FINISHED AND THE RESULTS CAN BE SEEN IN THE FIGURE.\n");
+fprintf("Execution Time of the first experiment: %12.10f\n",t1);
 pause(1);
 fprintf("\nIMPLEMENTATION OF THE SECOND STUDY EXPERIMENT TO SOLVE RANDOM PENTADIAGONAL LINEAR SYSTEMS...\n");
 
@@ -78,6 +79,7 @@ Np=4:50:n2;
 sum2_tM=zeros(1,cols); avg2_tM=zeros(1,cols);
 sum2_tP=zeros(1,cols); avg2_tP=zeros(1,cols);
 
+t_start2=tic;
 for n=4:50:n2
     q=((n-4)/50)+1;
 for l=1:10
@@ -112,7 +114,7 @@ avg2_tP(q)=sum2_tP(q)/l;
 
 
 end
-
+t2=toc(t_start2);
 subplot(2,1,2);
 plot(Np, avg2_tM, 'r'); hold on; grid on;
 plot(Np,avg2_tP, 'b');
@@ -124,6 +126,7 @@ ylabel('Execution Time');
 legend('MATLAB', 'PTRANSII','Location','northwest');
 hold off;
 fprintf("\nTHE IMPLEMENTATION OF THE SECOND STUDY EXPERIMENT IS FINISHED AND THE RESULTS CAN BE SEEN IN THE SECOND FIGURE.\n");
+fprintf("Execution Time of the second experiment: %12.10f\n",t2);
 end
 function p = pentadiagonal(e,c,d,a,b)
 
