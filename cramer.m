@@ -1,10 +1,10 @@
 function x = cramer(A,b)
 % Description: Solves Ax = b using the Cramer rule
 % Input: 
-%   - A: the coefficient matrix
-%   - b: the right-hand side values
+%  - A: the coefficient matrix
+%  - b: the right-hand side values
 % Output: 
-%   - x: the solution vector
+%  - x: the solution vector
 % Author: Markos Tsipouras
 
 	p = det(A); 
