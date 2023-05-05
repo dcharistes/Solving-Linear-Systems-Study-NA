@@ -5,7 +5,7 @@ function x = gaussianElimination(A, b)
 %   - b: the right-hand side values
 % Output: 
 %   - x: the solution vector
-% Author:  Markos Tsipouras
+% Author: Markos Tsipouras
 
 	[~, n] = size(A);
 	Ag = [A b];
