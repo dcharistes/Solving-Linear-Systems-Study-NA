@@ -1,4 +1,4 @@
-function erg1_18_semi
+function erg1_18_outputs
 clc;
 n1=35;
 n2=2000;
