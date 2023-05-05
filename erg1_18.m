@@ -7,7 +7,7 @@ fprintf("\nIMPLEMENTATION OF THE FIRST STUDY EXPERIMENT TO SOLVE RANDOM PENTADIA
 t_start1=tic;
 
 Np=4:n1;
-[~,cols]=size(Np);
+[cols]=size(Np,2);
 sum_tM=zeros(1,cols); avg_tM=zeros(1,cols);
 sum_tG=zeros(1,cols); avg_tG=zeros(1,cols);
 sum_tC=zeros(1,cols); avg_tC=zeros(1,cols);
@@ -23,7 +23,7 @@ d = round(10*rand(1,n))+1;
 a = round(10*rand(1,n-1))+1;
 b = round(10*rand(1,n-2))+1;
 
-p=pentadiagonal(e,c,d,a,b);
+p=pendatiagonal(e,c,d,a,b);
 
 y = round(100*rand(1,n)) + 1;
 
@@ -74,7 +74,7 @@ pause(1);
 fprintf("\nIMPLEMENTATION OF THE SECOND STUDY EXPERIMENT TO SOLVE RANDOM PENTADIAGONAL LINEAR SYSTEMS...\n");
 
 Np=4:50:n2;
-[~,cols]=size(Np);
+[cols]=size(Np,2);
 sum2_tM=zeros(1,cols); avg2_tM=zeros(1,cols);
 sum2_tP=zeros(1,cols); avg2_tP=zeros(1,cols);
 
@@ -89,7 +89,7 @@ d = round(10*rand(1,n))+1;
 a = round(10*rand(1,n-1))+1;
 b = round(10*rand(1,n-2))+1;
 
-p=pentadiagonal(e,c,d,a,b);
+p=pendatiagonal(e,c,d,a,b);
 
 y = round(100*rand(1,n)) + 1;
 
@@ -100,7 +100,7 @@ sum2_tM(q)= sum2_tM(q)+tM;
 
 tic;xP=PTRANSII(n,e,c,d,a,b,y); tP=toc;
 sum2_tP(q)= sum2_tP(q)+tP;
-%xN=norm(xM-xP); disp("xN= "+xN);
+%xN=norm(xM-xP); disp(xN);
 
 end
 
@@ -127,7 +127,7 @@ hold off;
 fprintf("\nTHE IMPLEMENTATION OF THE SECOND STUDY EXPERIMENT IS FINISHED AND THE RESULTS CAN BE SEEN IN THE SECOND FIGURE.\n");
 fprintf("Execution Time of the second experiment: %12.10f\n",t2);
 end
-function p = pentadiagonal(e,c,d,a,b)
+function p = pendatiagonal(e,c,d,a,b)
 
 p = diag(e,-2)+diag(c,-1)+diag(d,0)+diag(a,1)+diag(b,2);
 
