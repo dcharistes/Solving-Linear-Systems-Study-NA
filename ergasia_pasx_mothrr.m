@@ -1,4 +1,4 @@
-function pithikasNo2
+function ergasia_pasx_mothrr
 clc;
 
 N=4:35;
