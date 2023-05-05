@@ -98,6 +98,7 @@ sum2_tM(q)= sum2_tM(q)+tM;
 
 tic;xP=PTRANSII(n,e,c,d,a,b,y); tP=toc;
 sum2_tP(q)= sum2_tP(q)+tP;
+
 %xN=norm(xM-xP); disp("xN= "+xN);
 end
 
@@ -165,15 +166,19 @@ w(1)=(y(1) -(w(3)*b(1))- (w(2)*r(1)))/psi(1);
 x(1) = w(1);
 x(2) = w(2) -(s(2)*x(1));
 
-% disp("psi:"); 
-% disp(psi);
+%disp("psi:"); //if uncommented, the psi is printed for every dimension
+%(x10). The x10 is because of the for loop we implemented to get and save the average
+%solving time of the linear pentadiagonal system of every dimension.
+%disp(psi);
 
 for i = 3:1:n
 x(i) = w(i) - (s(i)*x(i-1)) - (f(i)*x(i-2));
 end
 
-% disp("x:");
-% disp(x);
+%disp("x:"); //if uncommented, the x is printed for every dimension
+%(x10). The x10 is because of the for loop we implemented to get and save the average
+%solving time of the linear pentadiagonal system of every dimension.
+%disp(x);
 
 end
 
