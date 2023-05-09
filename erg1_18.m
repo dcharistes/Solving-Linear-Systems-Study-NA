@@ -129,7 +129,7 @@ fprintf("Execution Time of the second experiment: %12.10f\n",t2);
 end
 function p = pentadiagonal(e,c,d,a,b)
 
-p = diag(e,-2)+diag(c,-1)+diag(d,0)+diag(a,1)+diag(b,2);
+p = diag(e,-2)+diag(c,-1)+diag(d)+diag(a,1)+diag(b,2);
 
 end
 
