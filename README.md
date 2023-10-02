@@ -5,4 +5,4 @@ For each dimension, we take as a sample the average resolution time of 10 random
 In the second study experiment, we only compare the "champions" of the first experiment whose difference in performance is not clear enough. These are Matlab's algorithm and PTRANSII. So to acknowledge a clear difference in their performances we take samples for dimensions 4x4 up to 2000x2000 with a 50-step increment (e.g. 4x4 - 54x54, etc.). The samples for each dimension are taken in the same way as before.
 
 
-[^1]: S. S. Askar, and A. A. Karawia, [“On Solving Pentadiagonal Linear Systems via Transformations”](https://www.hindawi.com/journals/mpe/2015/232456/) , Faculty of Science, Mansoura University, Egypt
+[^1]: S. S. Askar, and A. A. Karawia, [“On Solving Pentadiagonal Linear Systems via Transformations”](https://www.hindawi.com/journals/mpe/2015/232456/), Faculty of Science, Mansoura University, Egypt
